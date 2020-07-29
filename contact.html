@@ -187,7 +187,7 @@
 				</div>
 				<div class="row animate-box">
 					<div class="col-md-10 col-md-offset-1">
-						<form class="form-inline" id="mc-form">
+						<form action="#" class="form-inline" id="mc-form">
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="name" class="sr-only">姓名</label>
@@ -201,7 +201,7 @@
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
-								<button type="submit" class="btn btn-primary btn-block">我要喝喜酒</button>
+								<button type="submit" class="btn btn-primary btn-block" onclick="insert()">我要喝喜酒</button>
 							</div>
 						</form>
 					</div>
@@ -231,7 +231,7 @@
 	<!-- jQuery -->
 	<script src="dist/scripts.min.js"></script>
 
-	<!-- For demo purposes Only ( You may delete this anytime :-) -->
+	<!-- For demo purposes Only ( You may delete this anytime :-) 
 	<div id="colour-variations">
 		<a class="option-toggle"><i class="glyphicon glyphicon-cog"></i></a>
 		<h3>Preset Colors</h3>
@@ -272,7 +272,7 @@
 				</a>
 			</li>
 		</ul>
-	</div>
+	</div>-->
 	<script src="js/jquery.style.switcher.js"></script>
 	<script>
 		$(function(){
@@ -288,6 +288,30 @@
 				$('#colour-variations').toggleClass('sleep');
 			});
 		});
+		//添加用户
+		function insert(){
+		var username=$("#name").val();
+		var phone=$("#tel").val();
+		var data={"username":username,"phone":phone};
+		 $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+				contentType: 'application/json',
+                url: "http://1.119.146.194:2020/lhenv/sys/user/testUserRegister" ,//url
+                data:JSON.stringify(data),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.success) {
+                        alert(result.message);
+                    }
+                    ;
+                },
+                error : function() {
+                    
+                }
+            });
+		}
 	</script>
 	<!-- End demo purposes only -->
 	</body>
