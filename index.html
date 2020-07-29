@@ -45,29 +45,29 @@
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="/css/icomoon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<!-- Superfish -->
-	<link rel="stylesheet" href="/css/superfish.css">
+	<link rel="stylesheet" href="css/superfish.css">
 	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
 	
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="css/style.css">
 
 
 	<!-- Modernizr JS -->
-	<script src="/js/modernizr-2.6.2.min.js"></script>
+	<script src="js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
 	<!-- Styleswitcher ( This style is for demo purposes only, you may delete this anytime. ) -->
-	<link rel="stylesheet" id="theme-switch" href="/css/style.css">
-	<link rel="stylesheet" href="/css/color-preset-option.css">
+	<link rel="stylesheet" id="theme-switch" href="css/style.css">
+	<link rel="stylesheet" href="css/color-preset-option.css">
 	<!-- End demo purposes only -->
 
 	</head>
@@ -162,7 +162,7 @@
 				</div>
 				<div class="row animate-box">
 					<div class="col-md-10 col-md-offset-1">
-						<form class="form-inline" id="mc-form">
+						<form action="#" class="form-inline" id="mc-form">
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="name" class="sr-only">姓名</label>
@@ -176,7 +176,7 @@
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
-								<button type="submit" class="btn btn-primary btn-block">我要喝喜酒</button>
+								<button type="submit" class="btn btn-primary btn-block" onclick="insert()">我要喝喜酒</button>
 							</div>
 						</form>
 					</div>
@@ -264,6 +264,30 @@
 				$('#colour-variations').toggleClass('sleep');
 			});
 		});
+		//添加用户
+		function insert(){
+		var username=$("#name").val();
+		var phone=$("#tel").val();
+		var data={"username":username,"phone":phone};
+		 $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+				contentType: 'application/json',
+                url: "http://1.119.146.194:2020/lhenv/sys/user/testUserRegister" ,//url
+                data:JSON.stringify(data),
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.success) {
+                        alert(result.message);
+                    }
+                    ;
+                },
+                error : function() {
+                    
+                }
+            });
+		}
 	</script>
 	<!-- End demo purposes only -->
 
