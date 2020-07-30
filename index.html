@@ -70,10 +70,42 @@
 	<link rel="stylesheet" id="theme-switch" href="css/style.css">
 	<link rel="stylesheet" href="css/color-preset-option.css">
 	<!-- End demo purposes only -->
+	<style>
+	#audio_btn {
+    width: 20px;
+    height: 20px;
+    background-image: url(http://images2015.cnblogs.com/blog/595688/201607/595688-20160729181050575-559137759.png);
+    background-size: contain;
+	position:fixed;
+	z-index:10;
+}
 
+.rotate {
+    -webkit-animation: rotating 1.2s linear infinite;
+    -moz-animation: rotating 1.2s linear infinite;
+    -o-animation: rotating 1.2s linear infinite;
+    animation: rotating 1.2s linear infinite
+}
+
+@-webkit-keyframes rotating {
+    from { -webkit-transform: rotate(0) }
+    to { -webkit-transform: rotate(360deg) }
+}
+
+@keyframes rotating {
+    from { transform: rotate(0) }
+    to { transform: rotate(360deg) }
+}
+@-moz-keyframes rotating {
+    from { -moz-transform: rotate(0) }
+    to { -moz-transform: rotate(360deg) }
+}
+	</style>
 	</head>
 	<body>
+		<div id="audio_btn" class="rotate">
 	    <audio style="display:none; height: 0" id="yy" autoplay preload src="https://sucai.suoluomei.cn/sucai_zs/video/20191106172238-xiaoguojiang.mp3" loop></audio>
+		</div>
 		<!-- 背景音乐结束-->
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
@@ -338,7 +370,23 @@
 			});
 		//控制背景音乐
 		var bjyy=document.getElementById("yy");
-		function autoPlayAudio() {
+		//开始播放
+		autoPlayAudio(bjyy);
+		//注册暂停方法
+		$("#audio_btn").click(function(){
+          $(this).toggleClass("rotate"); //控制音乐图标 自转或暂停
+          
+          //控制背景音乐 播放或暂停            
+          if($(this).hasClass("rotate")){
+              bjyy.play();
+          }else{
+             bjyy.pause();
+         }
+		});
+		
+		});//end ready
+		//播放音乐
+		function autoPlayAudio(bjyy) {
         wx.config({
             debug: false
         });
@@ -346,8 +394,6 @@
             bjyy.play();
         });
 		}
-		autoPlayAudio();
-		});
 		//添加用户
 		function insert(){
 		var username=$("#name").val();
@@ -356,6 +402,7 @@
 		 //commoc(data);
 		 alert(username+"先生(女士)，期待您的到来。");
 		}
+		//
 		function commoc(data){
 		$.ajax({
             //几个参数需要注意一下
