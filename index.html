@@ -7,7 +7,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>邀请您参加我们的婚礼</title>
+	<title>刘旭和孙雅静邀请您参加我们的婚礼</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Premium HTML5 Template by FreeHTML5.co" />
 	<meta name="keywords" content="premium html5, premium template, premium bootstrap, html5, css3, mobile first, responsive" />
@@ -84,8 +84,8 @@
 						<div class="container">
 							<div class="col-md-10 col-md-offset-1">
 								<div class="animate-box">
-									<h1>我们结婚啦</h1>
-									<h2>刘旭 &amp; 孙雅静</h2>
+									<h2>结婚邀请函</h2>
+									<h1>婚礼日期</h1>
 									<p><span>2021.2.7(农历腊月二十六)</span></p>
 								</div>
 							</div>
@@ -124,8 +124,8 @@
 				<div class="row animate-box">
 					<div class="col-md-8 col-md-offset-2">
 						<div class="col-md-12 text-center heading-section">
-							<h2>我们结婚啦</h2>
-							<p><strong>on feb 7, 2021 &mdash; 济南, 山东</strong></p>
+							<h2>婚礼举办地点</h2>
+							<p><strong>济南市, 山东省</strong></p>
 						</div>
 					</div>
 				</div>
@@ -134,17 +134,18 @@
 		<div id="fh5co-countdown">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center animate-box">
+					<h1>距离婚礼日期还有</h1>
 					<p class="countdown">
-						<span id="days"></span>
-						<span id="hours"></span>
-						<span id="minutes"></span>
-						<span id="seconds"></span>
+						<span id="day"></span>
+						<span id="hour"></span>
+						<span id="minute"></span>
+						<span id="second"></span>
 					</p>
 				</div>
 			</div>
 		</div>
 
-<div id="fh5co-when-where" class="fh5co-section-gray">
+		<div id="fh5co-when-where" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
@@ -270,7 +271,7 @@
 		</div>
 	<!-- END fh5co-page -->
 
-	</div>
+		</div>
 	<!-- END fh5co-wrapper -->
 
 	
@@ -365,7 +366,23 @@
 				
             });
 		}
-		
+		//婚礼倒计时
+		setInterval(function(){
+			var timeing=new Date();
+			var time=new Date(2021,1,7,0,0,0);
+            var num=time.getTime()-timeing.getTime();
+            var day=parseInt(num/(24*60*60*1000));			
+            num=num%(24*60*60*1000);
+            var hour=parseInt(num/(60*60*1000));            
+            num=num%(60*60*1000);
+            var minute=parseInt(num/(60*1000));
+            num=num%(60*1000);
+            var seconde=parseInt(num/1000);
+            document.getElementById("day").innerHTML = day +" <small>天</small>";
+            document.getElementById("hour").innerHTML = hour +" <small>时</small>";
+            document.getElementById("minute").innerHTML = minute +" <small>分</small>";
+            document.getElementById("second").innerHTML = seconde +" <small>秒</small>";
+            },100)
 	</script>
 	<!-- End demo purposes only -->
 
