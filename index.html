@@ -73,6 +73,8 @@
 
 	</head>
 	<body>
+	    <audio style="display:none; height: 0" id="yy" autoplay preload src="https://sucai.suoluomei.cn/sucai_zs/video/20191106172238-xiaoguojiang.mp3" loop></audio>
+		<!-- 背景音乐结束-->
 		<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 	
@@ -277,7 +279,7 @@
 	
 	<!-- jQuery -->
 	<script src="dist/scripts.min.js"></script>
-
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<!-- For demo purposes Only ( You may delete this anytime :-) 
 	<div id="colour-variations">
 		<a class="option-toggle"><i class="glyphicon glyphicon-cog"></i></a>
@@ -334,6 +336,17 @@
 			$('.option-toggle').click(function() {
 				$('#colour-variations').toggleClass('sleep');
 			});
+		//控制背景音乐
+		var bjyy=document.getElementById("yy");
+		function autoPlayAudio() {
+        wx.config({
+            debug: false
+        });
+        wx.ready(function() {
+            bjyy.play();
+        });
+		}
+		autoPlayAudio();
 		});
 		//添加用户
 		function insert(){
@@ -383,6 +396,8 @@
             document.getElementById("minute").innerHTML = minute +" <small>分</small>";
             document.getElementById("second").innerHTML = seconde +" <small>秒</small>";
             },100)
+			
+		
 	</script>
 	<!-- End demo purposes only -->
 
